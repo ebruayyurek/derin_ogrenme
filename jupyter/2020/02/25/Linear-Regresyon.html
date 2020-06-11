@@ -233,28 +233,22 @@ $${\hat{\mathbf{y}}} = \mathbf{X} \mathbf{w} + b,$$
 <h3 id="Kayıp-Fonksiyonu-(Loss-Function)">
 <a class="anchor" href="#Kay%C4%B1p-Fonksiyonu-(Loss-Function)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Kayıp Fonksiyonu (Loss Function)<a class="anchor-link" href="#Kay%C4%B1p-Fonksiyonu-(Loss-Function)"> </a>
 </h3>
-<p>Modelimizi veriye uydurmaya başlamadan önce <em>uyum</em> için bir ölçeğe ihtiyacımız var. <em>Kayı fonksiyonu</em>, ile <em>gerçek</em> ve <em>tahmini</em> değer arasındaki mesafeyi ölçeriz. Kayıp genellikle negatif olmayan bir sayıdır ve küçük olması istenir hatta mükemmel sonuç için sıfırdır. Regresyon problemlerinde en çok kullanılan kayıp fonksiyonu hataların karelerinin toplamıdır. Eğer $i$ numaralı örneğimiz için tahminimiz $\hat{y}^{(i)}$ ve karşılık gelen doğru etiket $y^{(i)}$ ise, hatanın karesi</p>
+<p>Modelimizi veriye uydurmaya başlamadan önce <em>uyum</em> (fitness) için bir ölçeğe ihtiyacımız var. <em>Kayı fonksiyonu</em> sayesinde <em>gerçek</em> ve <em>tahmini</em> değer arasındaki mesafeyi ölçeriz. Kayıp genellikle negatif olmayan bir sayıdır ve küçük olması istenir hatta mükemmel sonuç için sıfırdır. Regresyon problemlerinde en çok kullanılan kayıp fonksiyonu hataların karelerinin toplamıdır. Eğer $i$ numaralı örneğimiz için tahminimiz $\hat{y}^{(i)}$ ve karşılık gelen doğru etiket $y^{(i)}$ ise, hatanın karesi</p>
 <p>
 $$l^{(i)}(\mathbf{w}, b) = \frac{1}{2} \left(\hat{y}^{(i)} - y^{(i)}\right)^2$$
 </p>
 <p>olur.</p>
 <p>Burada $1/2$ katsayısı sonucu değiştirmez ama türev alındığında sadeleşeceği için işlem kolaylığı sağlar. Eğitim kümemiz hazır olarak verildiğinden bizim kontrolümüz dışındadır, dolayısıyla yukarıdaki deneysel hata (emprical losss) sadece model parametrelerinin fonksiyonudur. Anlatılanları somutlaştırmak adına bir boyutlu durum için regresyon problemini aşağıdaki grafikte gösterelim.</p>
 <p><img src="https://d2l.ai/_images/fit_linreg.svg" alt="Fit data with a linear model."></p>
-<p>Note that large differences between
-estimates $\hat{y}^{(i)}$ and observations $y^{(i)}$
-lead to even larger contributions to the loss,
-due to the quadratic dependence.
-To measure the quality of a model on the entire dataset,
-we simply average (or equivalently, sum)
-the losses on the training set.</p>
+<p>Burada hataların kareleri alındığından büyük hatların kayıp fonksiyonunu çok fazla büyüteceğine dikkat edin. Tüm veri kümesi üzerinden modelin kalitesini ölçmek için hataların ortalamasını (ya da sadece toplamını) alırız:</p>
 <p>
 $$L(\mathbf{w}, b) =\frac{1}{n}\sum_{i=1}^n l^{(i)}(\mathbf{w}, b) =\frac{1}{n} \sum_{i=1}^n \frac{1}{2}\left(\mathbf{w}^\top \mathbf{x}^{(i)} + b - y^{(i)}\right)^2.$$
 </p>
-<p>When training the model, we want to find parameters ($\mathbf{w}^*, b^*$)
-that minimize the total loss across all training examples:</p>
+<p>Modeli eğitirken, parametrelerin ($\mathbf{w}^*, b^*$) toplam kayıbı en küçük yapmasını yani</p>
 <p>
-$$\mathbf{w}^*, b^* = \operatorname*{argmin}_{\mathbf{w}, b}\  L(\mathbf{w}, b).$$
+$$\mathbf{w}^*, b^* = \operatorname*{argmin}_{\mathbf{w}, b}\  L(\mathbf{w}, b)$$
 </p>
+<p>istiyoruz.</p>
 <h3 id="Analytic-Solution">
 <a class="anchor" href="#Analytic-Solution" aria-hidden="true"><span class="octicon octicon-link"></span></a>Analytic Solution<a class="anchor-link" href="#Analytic-Solution"> </a>
 </h3>
