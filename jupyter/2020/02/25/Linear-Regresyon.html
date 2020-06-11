@@ -264,26 +264,22 @@ $$\mathbf{w}^* = (\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf{y}$$
 <p>Modelimizi analitik olarak çözemezek veya kayıp yüzeyimiz yüksek boyutlu ve konveks olmasa bile pratikte modelimizi etkin bir biçimde eğitebiliriz. Hatta birçok iş için bu optimize edilmesi güç görünen modeller daha kolay eğitilebilirler ve daha kullanılışlı olurlar.</p>
 <p>Neredeyse tüm Derin Öğrenme modellerinde optimizasyon için kullanılan kilit yöntem, hatayı azaltmak için parametrelerin kayıp fonksiyonunun azaldığı yönde güncellendiği itreratif yöntemdir. Bu algoritmaya <em>gradiyent azalım</em> denir. Konveks yüzeyler için global minimuma eninde sonunda ulaşılır fakat konveks olmayanlar için (genellikle yeterince iyi olan) bir yerel minimuma yönelir.</p>
 <p>Gradiyent azalımı kullanırken kayıp fonksiyonunun verinin tamamı üzerinden türevini almak kaba bir yaklaşım olur çünkü bu veri kümesindeki her bir örnek için elde edilen kayıp değerlerinin ortlamasıdır. Her güncelleme adımında veri kümesinin tamamını tarayacağımızdan hesap çok uzun sürer. Genellikle her güncellemede verinin tamamı yerine örneklerden rastgele bir <em>yığın</em> (batch) alınır. Buna <em>stokastik gradiyent azalım</em> denir.</p>
-<p>Her ötelemede (iteration) belli sayıda örnekten oluşan rastgele bir $\mathcal{B}$ küçük yığını seçilir. Daha sonra yığının ortalama kayıbının model parametrelerine göre türevi (gradiyenti) hesaplanır. Son olarak da gradiyent belli bir $\eta &gt; 0$ adım boyu ile çarpılıp güncel parametre değerinden çıkarılır.</p>
+<p>Her ötelemede (iteration) belli sayıda örnekten oluşan rastgele küçük bir $\mathcal{B}$ yığını seçilir. Daha sonra yığının ortalama kayıbının model parametrelerine göre türevi (gradiyenti) hesaplanır. Son olarak da gradiyent belli bir $\eta &gt; 0$ adım boyu ile çarpılıp güncel parametre değerinden çıkarılır.</p>
 <p>Güncellemeyi matematiksel olarak şöyle ifade edebiliriz:</p>
 <p>
 $$(\mathbf{w},b) \leftarrow (\mathbf{w},b) - \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}} \partial_{(\mathbf{w},b)} l^{(i)}(\mathbf{w},b).$$
 </p>
-<p>Burada $\partial$ ile kısmi türev gösterilmektedir. Algoritmanın adımları: (i) parametreler için başlangıç değerleri seçmek, genellikle rastgele seçilir (ii) veriden her bir adım için rastgele yığınlar seçmek ve parametrleri negatif gradiyent doğrultudunda güncellemek olarak özetlenebilir.</p>
-<p>For quadratic losses and linear functions,
-we can write this out explicitly as follows:
-Note that $\mathbf{w}$ and $\mathbf{x}$ are vectors.
-Here, the more elegant vector notation makes the math
-much more readable than expressing things in terms of coefficients,
-say $w_1, w_2, \ldots, w_d$.</p>
+<p>Burada $\partial$ ile kısmi türev gösterilmektedir. Algoritmanın adımları: (i) parametreler için başlangıç değerleri seçmek, genellikle rastgele seçilir (ii) veriden her bir adım için rastgele yığınlar seçmek ve parametrleri negatif gradiyent doğrultusunda güncellemek olarak özetlenebilir.</p>
+<p>İkinci dereceden kayıplar ve lineer fonksiyonlar için güncellemeyi açık olarak bulabiliriz. Burada $\mathbf{w}$ ve $\mathbf{x}$ vektörlerdir. $w_1, w_2, \ldots, w_d$ bileşenlerini kullanmak yerine vektör gösterimi matematiksel ifadeleri daha okunaklı yapar. Sonuç olarak güncelleme</p>
 $$
 \begin{aligned}
 \mathbf{w} &amp;\leftarrow \mathbf{w} -   \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}} \partial_{\mathbf{w}} l^{(i)}(\mathbf{w}, b) &amp;&amp; =
 \mathbf{w} - \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}} \mathbf{x}^{(i)} \left(\mathbf{w}^\top \mathbf{x}^{(i)} + b - y^{(i)}\right),\\
 b &amp;\leftarrow b -  \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}} \partial_b l^{(i)}(\mathbf{w}, b)  &amp;&amp; =
-b - \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}} \left(\mathbf{w}^\top \mathbf{x}^{(i)} + b - y^{(i)}\right).
+b - \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}} \left(\mathbf{w}^\top \mathbf{x}^{(i)} + b - y^{(i)}\right)
 \end{aligned}
-$$<p>In the above equation, $|\mathcal{B}|$ represents
+$$<p>biçiminde ifade edilebilir. Yukarıdaki eşitliklerde $|\mathcal{B}|$ ile <em>yığın boyutu</em> (batch size) ve $\eta$ ile de <em>öğrenme parametresi</em> (learining rate) gösterilmektedir. Yığın boyutu ve öğrenme parametresini önceden belirlediğimizi, bunların öğrenilmediğini vurgulamak gerekir. Bu şekilde değiştirilebilen fakat öğrenme sırasında güncellenmeyen parametrelere <em>hiperparametre</em> denir. <em>Hiperparametre ayarlama</em> (hyerparameter tuning), bunların uygun biçimde seçilmesi işlemidir ve eğitim kümesi ile elde edilen sonuçların ayrı bir <em>doğrulama kümesi</em> (validation set)</p>
+<p>In the above equation, $|\mathcal{B}|$ represents
 the number of examples in each minibatch (the <em>batch size</em>)
 and $\eta$ denotes the <em>learning rate</em>.
 We emphasize that the values of the batch size and learning rate
