@@ -209,9 +209,9 @@ window.onload = wrap_img;
 </h3>
 <p>Lineerlik kabulü gereği hedef (fiyat), özelliklerin (alan ve yıl) lineer birleşimidir:</p>
 <p>
-$$fiyat = w_{alan}} \cdot {alan} + w_{yıl} \cdot {yıl} + b.$$
+$$fiyat = w_{\textrm{alan}} \cdot \textrm{alan} + w_\textrm{yıl} \cdot \textrm{yıl} + b.$$
 </p>
-<p>Burada , $w_$ and $w_$ katsayılarına <em>ağırlıklar</em>, $b$ sayısına called a <em>yanlılık</em> denir. Ağırlıklar herbir özelliğin (feature) tahminimiz üzerinde ne kadar etkili olduğunu, yanlılık terimi de teüm üzellikler sıfır olduğunda tahmin edilen fiyatın kaç olduğunu belirler. Evin alanı veya yaşı sıfır olmaz ama yanılık terimi modelimizin temsil yeterliliğinin kısıtlanmaması açısından önemlidir.</p>
+<p>Burada , $w_{\textrm{alan}}$ and $w_{\textrm{yıl}}$ katsayılarına <em>ağırlıklar</em>, $b$ sayısına called a <em>yanlılık</em> denir. Ağırlıklar herbir özelliğin (feature) tahminimiz üzerinde ne kadar etkili olduğunu, yanlılık terimi de teüm üzellikler sıfır olduğunda tahmin edilen fiyatın kaç olduğunu belirler. Evin alanı veya yaşı sıfır olmaz ama yanılık terimi modelimizin temsil yeterliliğinin kısıtlanmaması açısından önemlidir.</p>
 <p>Amacımız, elimizdeki veri için $\mathbf{w}$ ağırlılarını $b$ yanlılığını uygun şekilde belirlemektir. Bu sayede modelimizin yaptığı tahminler ile veri kümesindeki gerçek değerler ortalama olarak örtüşmelidir.</p>
 <p>In disciplines where it is common to focus
 on datasets with just a few features,
