@@ -115,7 +115,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      19 min read
+      18 min read
     
 </span></p>
 
@@ -155,8 +155,8 @@ window.onload = wrap_img;
 <ul>
 <li class="toc-entry toc-h3"><a href="#Lineer-Model">Lineer Model </a></li>
 <li class="toc-entry toc-h3"><a href="#Kay%C4%B1p-Fonksiyonu-(Loss-Function)">Kayıp Fonksiyonu (Loss Function) </a></li>
-<li class="toc-entry toc-h3"><a href="#Analytic-Solution">Analytic Solution </a></li>
-<li class="toc-entry toc-h3"><a href="#Gradient-descent">Gradient descent </a></li>
+<li class="toc-entry toc-h3"><a href="#Analitik-%C3%87%C3%B6z%C3%BCm">Analitik Çözüm </a></li>
+<li class="toc-entry toc-h3"><a href="#Gradient-Azal%C4%B1m-(Gradient-descent)">Gradient Azalım (Gradient descent) </a></li>
 <li class="toc-entry toc-h3"><a href="#Making-Predictions-with-the-Learned-Model">Making Predictions with the Learned Model </a></li>
 <li class="toc-entry toc-h3"><a href="#Vectorization-for-Speed">Vectorization for Speed </a></li>
 </ul>
@@ -249,74 +249,27 @@ $$L(\mathbf{w}, b) =\frac{1}{n}\sum_{i=1}^n l^{(i)}(\mathbf{w}, b) =\frac{1}{n} 
 $$\mathbf{w}^*, b^* = \operatorname*{argmin}_{\mathbf{w}, b}\  L(\mathbf{w}, b)$$
 </p>
 <p>istiyoruz.</p>
-<h3 id="Analytic-Solution">
-<a class="anchor" href="#Analytic-Solution" aria-hidden="true"><span class="octicon octicon-link"></span></a>Analytic Solution<a class="anchor-link" href="#Analytic-Solution"> </a>
+<h3 id="Analitik-Çözüm">
+<a class="anchor" href="#Analitik-%C3%87%C3%B6z%C3%BCm" aria-hidden="true"><span class="octicon octicon-link"></span></a>Analitik Çözüm<a class="anchor-link" href="#Analitik-%C3%87%C3%B6z%C3%BCm"> </a>
 </h3>
-<p>Linear regression happens to be an unusually simple optimization problem.
-Unlike most other models that we will encounter in this book,
-linear regression can be solved analytically by applying a simple formula,
-yielding a global optimum.
-To start, we can subsume the bias $b$ into the parameter $\mathbf{w}$
-by appending a column to the design matrix consisting of all $1s$.
-Then our prediction problem is to minimize $||\mathbf{y} - \mathbf{X}\mathbf{w}||$.
-Because this expression has a quadratic form, it is convex,
-and so long as the problem is not degenerate
-(our features are linearly independent), it is strictly convex.</p>
-<p>Thus there is just one critical point on the loss surface
-and it corresponds to the global minimum.
-Taking the derivative of the loss with respect to $\mathbf{w}$
-and setting it equal to $0$ yields the analytic solution:</p>
+<p>Lineer Regreyon az rastlanır ölçüde basit bir optimizasyon problemdir. Karşılaşacağımız birçok modelin aksine lineer regresyon analitik bir şekilde çözülür ve global optimum bulunur. İlk olarak $b$ yanlılık terimini $\mathbf{w}$ arametrelerine eklyelelim buna karşılık dizayn matrisine $1$ sayılarından oluşan bir sütun ekleyelim. Bu durumda tahmin problemimiz $||\mathbf{y} - \mathbf{X}\mathbf{w}||^2$ ifadesini minimize etmeye dönüşür. Bu ikinci dereceden bir ifade olduğu için konvekstir.</p>
+<p>Dolayısıyla kayıp fonksiyonunun belirttiği yüzey üzerinde bir tek kritik nokta vardır, bu da global minimuma karşılık gelir. Kayıp fonksiyonunun $\mathbf{w}$ üzerinden türevini alıp sıfıra eşitlersek,</p>
 <p>
-$$\mathbf{w}^* = (\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf{y}.$$
+$$\mathbf{w}^* = (\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf{y}$$
 </p>
-<p>While simple problems like linear regression
-may admit analytic solutions,
-you should not get used to such good fortune.
-Although analytic solutions allow for nice mathematical analysis,
-the requirement of an analytic solution is so restrictive
-that it would exclude all of deep learning.</p>
-<h3 id="Gradient-descent">
-<a class="anchor" href="#Gradient-descent" aria-hidden="true"><span class="octicon octicon-link"></span></a>Gradient descent<a class="anchor-link" href="#Gradient-descent"> </a>
+<p>analitik çözümünü elde ederiz. Analitik çözüm matematiksel analiz için yararlı olsa da matrisin tersin içerdiğinden pratikte kullanışsızdır. Derin öğrenmede bu şekilde analitik çözümler neredeyse hiç kullanılmaz.</p>
+<h3 id="Gradient-Azalım-(Gradient-descent)">
+<a class="anchor" href="#Gradient-Azal%C4%B1m-(Gradient-descent)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Gradient Azalım (Gradient descent)<a class="anchor-link" href="#Gradient-Azal%C4%B1m-(Gradient-descent)"> </a>
 </h3>
-<p>Even in cases where we cannot solve the models analytically,
-and even when the loss surfaces are high-dimensional and nonconvex,
-it turns out that we can still train models effectively in practice.
-Moreover, for many tasks, these difficult-to-optimize models
-turn out to be so much better that figuring out how to train them
-ends up being well worth the trouble.</p>
-<p>The key technique for optimizing nearly any deep learning model,
-and which we will call upon throughout this book,
-consists of iteratively reducing the error
-by updating the parameters in the direction
-that incrementally lowers the loss function.
-This algorithm is called <em>gradient descent</em>.
-On convex loss surfaces, it will eventually converge to a global minimum,
-and while the same cannot be said for nonconvex surfaces,
-it will at least lead towards a (hopefully good) local minimum.</p>
-<p>The most naive application of gradient descent
-consists of taking the derivative of the true loss,
-which is an average of the losses computed
-on every single example in the dataset.
-In practice, this can be extremely slow.
-We must pass over the entire dataset before making a single update.
-Thus, we will often settle for sampling a random minibatch of examples
-every time we need to compute the update,
-a variant called <em>stochastic gradient descent</em>.</p>
-<p>In each iteration, we first randomly sample a minibatch $\mathcal{B}$
-consisting of a fixed number of training examples.
-We then compute the derivative (gradient) of the average loss
-on the mini batch with regard to the model parameters.
-Finally, we multiply the gradient by a predetermined step size $\eta &gt; 0$
-and subtract the resulting term from the current parameter values.</p>
-<p>We can express the update mathematically as follows
-($\partial$ denotes the partial derivative) :</p>
+<p>Modelimizi analitik olarak çözemezek veya kayıp yüzeyimiz yüksek boyutlu ve konveks olmasa bile pratikte modelimizi etkin bir biçimde eğitebiliriz. Hatta birçok iş için bu optimize edilmesi güç görünen modeller daha kolay eğitilebilirler ve daha kullanılışlı olurlar.</p>
+<p>Neredeyse tüm Derin Öğrenme modellerinde optimizasyon için kullanılan kilit yöntem, hatayı azaltmak için parametrelerin kayıp fonksiyonunun azaldığı yönde güncellendiği itreratif yöntemdir. Bu algoritmaya <em>gradiyent azalım</em> denir. Konveks yüzeyler için global minimuma eninde sonunda ulaşılır fakat konveks olmayanlar için (genellikle yeterince iyi olan) bir yerel minimuma yönelir.</p>
+<p>Gradiyent azalımı kullanırken kayıp fonksiyonunun verinin tamamı üzerinden türevini almak kaba bir yaklaşım olur çünkü bu veri kümesindeki her bir örnek için elde edilen kayıp değerlerinin ortlamasıdır. Her güncelleme adımında veri kümesinin tamamını tarayacağımızdan hesap çok uzun sürer. Genellikle her güncellemede verinin tamamı yerine örneklerden rastgele bir <em>yığın</em> (batch) alınır. Buna <em>stokastik gradiyent azalım</em> denir.</p>
+<p>Her ötelemede (iteration) belli sayıda örnekten oluşan rastgele bir $\mathcal{B}$ küçük yığını seçilir. Daha sonra yığının ortalama kayıbının model parametrelerine göre türevi (gradiyenti) hesaplanır. Son olarak da gradiyent belli bir $\eta &gt; 0$ adım boyu ile çarpılıp güncel parametre değerinden çıkarılır.</p>
+<p>Güncellemeyi matematiksel olarak şöyle ifade edebiliriz:</p>
 <p>
 $$(\mathbf{w},b) \leftarrow (\mathbf{w},b) - \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}} \partial_{(\mathbf{w},b)} l^{(i)}(\mathbf{w},b).$$
 </p>
-<p>To summarize, steps of the algorithm are the following:
-(i) we initialize the values of the model parameters, typically at random;
-(ii) we iteratively sample random batches from the data (many times),
-updating the parameters in the direction of the negative gradient.</p>
+<p>Burada $\partial$ ile kısmi türev gösterilmektedir. Algoritmanın adımları: (i) parametreler için başlangıç değerleri seçmek, genellikle rastgele seçilir (ii) veriden her bir adım için rastgele yığınlar seçmek ve parametrleri negatif gradiyent doğrultudunda güncellemek olarak özetlenebilir.</p>
 <p>For quadratic losses and linear functions,
 we can write this out explicitly as follows:
 Note that $\mathbf{w}$ and $\mathbf{x}$ are vectors.
