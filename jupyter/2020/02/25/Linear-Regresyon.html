@@ -154,7 +154,7 @@ window.onload = wrap_img;
 <a href="#Lineer-Regresyonun-Temel-%C3%96geleri">Lineer Regresyonun Temel Ögeleri </a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#Lineer-Model">Lineer Model </a></li>
-<li class="toc-entry toc-h3"><a href="#Loss-Function">Loss Function </a></li>
+<li class="toc-entry toc-h3"><a href="#Kay%C4%B1p-Fonksiyonu-(Loss-Function)">Kayıp Fonksiyonu (Loss Function) </a></li>
 <li class="toc-entry toc-h3"><a href="#Analytic-Solution">Analytic Solution </a></li>
 <li class="toc-entry toc-h3"><a href="#Gradient-descent">Gradient descent </a></li>
 <li class="toc-entry toc-h3"><a href="#Making-Predictions-with-the-Learned-Model">Making Predictions with the Learned Model </a></li>
@@ -213,61 +213,31 @@ $$fiyat = w_{\textrm{alan}} \cdot \textrm{alan} + w_\textrm{yıl} \cdot \textrm{
 </p>
 <p>Burada , $w_{\textrm{alan}}$ and $w_{\textrm{yıl}}$ katsayılarına <em>ağırlıklar</em>, $b$ sayısına called a <em>yanlılık</em> denir. Ağırlıklar herbir özelliğin (feature) tahminimiz üzerinde ne kadar etkili olduğunu, yanlılık terimi de teüm üzellikler sıfır olduğunda tahmin edilen fiyatın kaç olduğunu belirler. Evin alanı veya yaşı sıfır olmaz ama yanılık terimi modelimizin temsil yeterliliğinin kısıtlanmaması açısından önemlidir.</p>
 <p>Amacımız, elimizdeki veri için $\mathbf{w}$ ağırlılarını $b$ yanlılığını uygun şekilde belirlemektir. Bu sayede modelimizin yaptığı tahminler ile veri kümesindeki gerçek değerler ortalama olarak örtüşmelidir.</p>
-<p>In disciplines where it is common to focus
-on datasets with just a few features,
-explicitly expressing models long-form like this is common.
-In machine learning, we usually work with high-dimensional datasets,
-so it is more convenient to employ linear algebra notation.
-When our inputs consist of $d$ features,
-we express our prediction $\hat{y}$ as</p>
+<p>Makine öğrenmesinde yüksek boyutlu veri kümeleri ile çalığılır, yani özelliklerin sayısı çok fazladır. Örneğin bir fotoğrafın her bir pikseli bir özellik olarak alınır. Dolayısıyla matrisler ve vektörler gibi Lineer Cebir araçlarını kullanmak yararlı olur. Herbir veri (girdi), $d$ özelliğe sahip ise $\hat{y}$ tahminimizi</p>
 <p>
 $$\hat{y} = w_1  x_1 + ... + w_d  x_d + b.$$
 </p>
-<p>Collecting all features into a vector $\mathbf{x} \in \mathbb{R}^d$
-and all weights into a vector $\mathbf{w} \in \mathbb{R}^d$,
-we can express our model compactly using a dot product:</p>
+<p>şeklinde ifade ederiz. Tüm özellikleri $\mathbf{x} \in \mathbb{R}^d$ vektörünün bileşenleri ile, tüm ağırlıkları da $\mathbf{w} \in \mathbb{R}^d$ vektörünün bileşnleri ile gösterirsek, modelimizi</p>
 <p>
-$$\hat{y} = \mathbf{w}^\top \mathbf{x} + b.$$
-
-:eqlabel:<code>eq:linreg-y</code></p>
-<p>In :eqref:<code>eq:linreg-y</code>, the vector $\mathbf{x}$ corresponds to features of a single data instance.
-We will often find it convenient
-to refer to features of our entire dataset of $n$ examples
-via the <em>design matrix</em> $\mathbf{X} \in \mathbb{R}^{n \times d}$.
-Here, $\mathbf{X}$ contains one row for every example
-and one column for every feature.</p>
-<p>For a collection of features $\mathbf{X}$,
-the predictions $\hat{\mathbf{y}} \in \mathbb{R}^n$
-can be expressed via the matrix-vector product:</p>
+$$\hat{y} = \mathbf{w}^\top \mathbf{x} + b$$
+</p>
+<p>nokta çarpımıyla ifade etmiş oluruz.</p>
+<p>Burada $\mathbf{x}$ vektörü bir tek veri örneğine karşılık gelen özellik vektörüdür. Veri kümesi $n$ örnekten oluşsun ve hepsini $\mathbf{X} \in \mathbb{R}^{n \times d}$ matrisinde bir araya getirelim. Burada herbir $\mathbf{x}$ vektörü $\mathbf{X}$ matrisinin bir sütununu oluşturmaktadır. $\mathbf{X}$ matrisine <em>dizayn matrisi</em> veya <em>veri matrsi</em> denir.</p>
+<p>Özelliklerin bir araya getirilmesi ile oluşan $\mathbf{X}$ için  $\hat{\mathbf{y}} \in \mathbb{R}^n$ tahminimiz matris-vektör çarımıyla</p>
 <p>
 $${\hat{\mathbf{y}}} = \mathbf{X} \mathbf{w} + b,$$
 </p>
-<p>where broadcasting (see :numref:<code>subsec_broadcasting</code>) is applied during the summation.
-Given features of a training dataset $\mathbf{X}$
-and corresponding (known) labels $\mathbf{y}$,
-the goal of linear regression is to find
-the weight vector $\mathbf{w}$ and the bias term $b$
-that given features of a new data instance
-sampled from the same distribution as $\mathbf{X}$,
-the new data instance's label will (in expectation) be predicted with the lowest error.</p>
-<p>Even if we believe that the best model for
-predicting $y$ given $\mathbf{x}$ is linear,
-we would not expect to find a real-world dataset of $n$ examples where
-$y^{(i)}$ exactly equals $\mathbf{w}^\top \mathbf{x}^{(i)}+b$
-for all $1 \leq i \leq n$.
-For example, whatever instruments we use to observe
-the features $\mathbf{X}$ and labels $\mathbf{y}$
-might suffer small amount of measurement error.
-Thus, even when we are confident
-that the underlying relationship is linear,
-we will incorporate a noise term to account for such errors.</p>
-<p>Before we can go about searching for the best parameters $\mathbf{w}$ and $b$,
-we will need two more things:
-(i) a quality measure for some given model;
-and (ii) a procedure for updating the model to improve its quality.</p>
-<h3 id="Loss-Function">
-<a class="anchor" href="#Loss-Function" aria-hidden="true"><span class="octicon octicon-link"></span></a>Loss Function<a class="anchor-link" href="#Loss-Function"> </a>
+<p>biçiminde ifade edilebilir. Burada $b$ vektörü aslında aynı $b$ sayısının $n$ defa yazılmasıyla oluşan vektördür. Python programlamadaki yayımlama (broadcasting) gibi. Lineer regresyonda amaç, $\mathbf{X}$ eğitim kümemizdeki özellikler ve karşılık gelen $\mathbf{y}$ etiketleri için, aynı dağılımdan gelen yeni bir örnek için tahmindeki hatayı beklenen değer olarak en az yapan $\mathbf{w}$  ve $b$ terimlerini bulmaktır.</p>
+<p>$\mathbf{x}$ verildiğinde $y$ için en iyi tahmini veren modelin lineer olduğunu düşünsek de, her $1 \leq i \leq n$ için gerçek $y^{(i)}$ ile $\mathbf{w}^\top \mathbf{x}^{(i)}+b$ tahmininin eşit olmasını bekleyemeyiz. Örneğin $\mathbf{X}$ özellikleri ve $\mathbf{y}$ etiketleri küçük ölçüm hataları yaılmış olabilir. Dolayısıyla, geri landa yatan ilişkinin lineer olduğundan emin olsak bile bu tür küçük hataları ifade eden bir gürültü (noise) terimini de dahil edeceğiz.</p>
+<p>En iyi $\mathbf{w}$ and $b$ parametrelerini aramaya başlamadan önce iki şey yamalıyız: (i) modelin kalitesini ölçen bir araç ve (ii) modelin kalitesini iyileştirmek için izleyeceğiz yol.</p>
+<h3 id="Kayıp-Fonksiyonu-(Loss-Function)">
+<a class="anchor" href="#Kay%C4%B1p-Fonksiyonu-(Loss-Function)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Kayıp Fonksiyonu (Loss Function)<a class="anchor-link" href="#Kay%C4%B1p-Fonksiyonu-(Loss-Function)"> </a>
 </h3>
+<p>Modelimizi veriye uydurmaya başlamadan önce <em>uyum</em> için bir ölçeğe ihtiyacımız var. <em>Kayı fonksiyonu</em>, ile <em>gerçek</em> ve <em>tahmini</em> değer arasındaki mesafeyi ölçeriz. Kayıp genellikle negatif olmayan bir sayıdır ve küçük olması istenir hatta mükemmel sonuç için sıfırdır. Regresyon problemlerinde en çok kullanılan kayıp fonksiyonu hataların karelerinin toplamıdır. Eğer $i$ numaralı örneğimiz için tahminimiz $\hat{y}^{(i)}$ ve karşılık gelen doğru etiket $y^{(i)}$ ise, hatanın karesi</p>
+<p>
+$$l^{(i)}(\mathbf{w}, b) = \frac{1}{2} \left(\hat{y}^{(i)} - y^{(i)}\right)^2$$
+</p>
+<p>olur.</p>
 <p>Before we start thinking about how <em>to fit</em> our model,
 we need to determine a measure of <em>fitness</em>.
 The <em>loss function</em> quantifies the distance
@@ -283,16 +253,8 @@ the squared error is given by:</p>
 <p>
 $$l^{(i)}(\mathbf{w}, b) = \frac{1}{2} \left(\hat{y}^{(i)} - y^{(i)}\right)^2.$$
 </p>
-<p>The constant $1/2$ makes no real difference
-but will prove notationally convenient,
-cancelling out when we take the derivative of the loss.
-Since the training dataset is given to us, and thus out of our control,
-the empirical error is only a function of the model parameters.
-To make things more concrete, consider the example below
-where we plot a regression problem for a one-dimensional case
-as shown in :numref:<code>fig_fit_linreg</code>.</p>
-<p><img src="https://d2l.ai/_images/fit_linreg.svg" alt="Fit data with a linear model.">
-<img class="emoji" title=":label:" alt=":label:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f3f7.png" height="20" width="20"><code>fig_fit_linreg</code></p>
+<p>Burada $1/2$ katsayısı sonucu değiştirmez ama türev alındığında sadeleşeceği için işlem kolaylığı sağlar. Eğitim kümemiz hazır olarak verildiğinden bizim kontrolümüz dışındadır, dolayısıyla yukarıdaki deneysel hata (emprical losss) sadece model parametrelerinin fonksiyonudur. Anlatılanları somutlaştırmak adına bir boyutlu durum için regresyon problemini aşağıdaki grafikte gösterelim.</p>
+<p><img src="https://d2l.ai/_images/fit_linreg.svg" alt="Fit data with a linear model."></p>
 <p>Note that large differences between
 estimates $\hat{y}^{(i)}$ and observations $y^{(i)}$
 lead to even larger contributions to the loss,
