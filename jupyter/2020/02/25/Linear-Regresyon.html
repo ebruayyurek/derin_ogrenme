@@ -465,26 +465,13 @@ $$<p>biçiminde ifade edilebilir. Yukarıdaki eşitliklerde $|\mathcal{B}|$ ile 
 <h2 id="Normal-Dağılım-ve-En-Küçük-Kareler-Kayıp-Fonksiyonu">
 <a class="anchor" href="#Normal-Da%C4%9F%C4%B1l%C4%B1m-ve-En-K%C3%BC%C3%A7%C3%BCk-Kareler-Kay%C4%B1p-Fonksiyonu" aria-hidden="true"><span class="octicon octicon-link"></span></a>Normal Dağılım ve En Küçük Kareler Kayıp Fonksiyonu<a class="anchor-link" href="#Normal-Da%C4%9F%C4%B1l%C4%B1m-ve-En-K%C3%BC%C3%A7%C3%BCk-Kareler-Kay%C4%B1p-Fonksiyonu"> </a>
 </h2>
-<p>While you can already get your hands dirty using only the information above,
-in the following section we can more formally motivate the square loss objective
-via assumptions about the distribution of noise.</p>
-<p>Recall from the above that the squared loss
-$l(y, \hat{y}) = \frac{1}{2} (y - \hat{y})^2$
-has many convenient properties.
-These include a simple derivative
-$\partial_{\hat{y}} l(y, \hat{y}) = (\hat{y} - y)$.</p>
-<p>As we mentioned earlier, linear regression was invented by Gauss in 1795,
-who also discovered the normal distribution (also called the <em>Gaussian</em>).
-It turns out that the connection between
-the normal distribution and linear regression
-runs deeper than common parentage.
-To refresh your memory, the probability density
-of a normal distribution with mean $\mu$ and variance $\sigma^2$
-is given as follows:</p>
+<p>Şimdiden lineer regresyonu uygulayacak kadar bilgi edinmiş olsak bile, en küçük kareler kayıp fonksiyonunun neden gürültü ile ilgili kabulümüz ile uyumlu olduğunu bilmek yayarlı olacaktır.</p>
+<p>Yukarıda $l(y, \hat{y}) = \frac{1}{2} (y - \hat{y})^2$ olarak tanılmalan en küçük kareler kayıp fonksiyonunun yararlı özellikleri görüldü. Bunlardan birisi de türevinin $\partial_{\hat{y}} l(y, \hat{y}) = (\hat{y} - y)$ şeklinde çok sade olmasıdır.</p>
+<p>Lineer regresyonu Gauss 1975 yılında buldu. Gauss aynı zamanda normal dağılımı (Gauss dağılımı da denir) da keşfeden kişidir. Yani normal dağılımla lineer regresyon arasında babalarının aynı olması ötesinde de derin bağlar vardır. Şimdi ortalamsı (mean) $\mu$ and varyansı $\sigma^2$ olan normal dağılımın yoğunluk fonksiyonunun</p>
 <p>
-$$p(z) = \frac{1}{\sqrt{2 \pi \sigma^2}} \exp\left(-\frac{1}{2 \sigma^2} (z - \mu)^2\right).$$
+$$p(z) = \frac{1}{\sqrt{2 \pi \sigma^2}} \exp\left(-\frac{1}{2 \sigma^2} (z - \mu)^2\right)$$
 </p>
-<p>Below we define a Python function to compute the normal distribution.</p>
+<p>olduğunu hatırlayalım. Aşağıda normal dağılımı hesalayan Python fonksiyonu veriliyor.</p>
 
 </div>
 </div>
@@ -511,7 +498,7 @@ $$p(z) = \frac{1}{\sqrt{2 \pi \sigma^2}} \exp\left(-\frac{1}{2 \sigma^2} (z - \m
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can now visualize the normal distributions.</p>
+<p>Bununla normal dağılımı görselleştirebiliriz.</p>
 
 </div>
 </div>
