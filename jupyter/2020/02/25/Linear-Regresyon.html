@@ -157,11 +157,11 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#Kay%C4%B1p-Fonksiyonu-(Loss-Function)">Kayıp Fonksiyonu (Loss Function) </a></li>
 <li class="toc-entry toc-h3"><a href="#Analitik-%C3%87%C3%B6z%C3%BCm">Analitik Çözüm </a></li>
 <li class="toc-entry toc-h3"><a href="#Gradient-Azal%C4%B1m-(Gradient-descent)">Gradient Azalım (Gradient descent) </a></li>
-<li class="toc-entry toc-h3"><a href="#%C3%96%C4%9Frenilen-Model-ile-Tahminler-Yapma">Öğrenilen Model ile Tahminler Yapma </a></li>
-<li class="toc-entry toc-h3"><a href="#Vectorization-for-Speed">Vectorization for Speed </a></li>
+<li class="toc-entry toc-h3"><a href="#%C3%96%C4%9Frenilen-Model-ile-Tahminler-Yapma-(Estimation)">Öğrenilen Model ile Tahminler Yapma (Estimation) </a></li>
+<li class="toc-entry toc-h3"><a href="#Vekt%C3%B6rle%C5%9Ftirme-H%C4%B1zland%C4%B1r%C4%B1r">Vektörleştirme Hızlandırır </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h2"><a href="#The-Normal-Distribution-and-Squared-Loss">The Normal Distribution and Squared Loss </a></li>
+<li class="toc-entry toc-h2"><a href="#Normal-Da%C4%9F%C4%B1l%C4%B1m-ve-En-K%C3%BC%C3%A7%C3%BCk-Kareler-Kay%C4%B1p-Fonksiyonu">Normal Dağılım ve En Küçük Kareler Kayıp Fonksiyonu </a></li>
 <li class="toc-entry toc-h2">
 <a href="#From-Linear-Regression-to-Deep-Networks">From Linear Regression to Deep Networks </a>
 <ul>
@@ -233,7 +233,7 @@ $${\hat{\mathbf{y}}} = \mathbf{X} \mathbf{w} + b,$$
 <h3 id="Kayıp-Fonksiyonu-(Loss-Function)">
 <a class="anchor" href="#Kay%C4%B1p-Fonksiyonu-(Loss-Function)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Kayıp Fonksiyonu (Loss Function)<a class="anchor-link" href="#Kay%C4%B1p-Fonksiyonu-(Loss-Function)"> </a>
 </h3>
-<p>Modelimizi veriye uydurmaya başlamadan önce <em>uyum</em> (fitness) için bir ölçeğe ihtiyacımız var. <em>Kayıp fonksiyonu</em> sayesinde <em>gerçek</em> ve <em>tahmini</em> değer arasındaki mesafeyi ölçeriz. Kayıp genellikle negatif olmayan bir sayıdır ve küçük olması istenir hatta mükemmel sonuç için sıfırdır. Regresyon problemlerinde en çok kullanılan kayıp fonksiyonu hataların karelerinin toplamıdır. Eğer $i$ numaralı örneğimiz için tahminimiz $\hat{y}^{(i)}$ ve karşılık gelen doğru etiket $y^{(i)}$ ise, hatanın karesi</p>
+<p>Modelimizi veriye uydurmaya başlamadan önce <em>uyum</em> (fitness) için bir ölçeğe ihtiyacımız var. <em>Kayıp fonksiyonu</em> sayesinde <em>gerçek</em> ve <em>tahmini</em> değer arasındaki mesafeyi ölçeriz. Kayıp genellikle negatif olmayan bir sayıdır ve küçük olması istenir hatta mükemmel sonuç için sıfırdır. Regresyon problemlerinde en çok kullanılan kayıp fonksiyonu hataların karelerinin toplamıdır. Buna <em>en küçük kareler hata fonksiyonu</em> da denir. Eğer $i$ numaralı örneğimiz için tahminimiz $\hat{y}^{(i)}$ ve karşılık gelen doğru etiket $y^{(i)}$ ise, hatanın karesi</p>
 <p>
 $$l^{(i)}(\mathbf{w}, b) = \frac{1}{2} \left(\hat{y}^{(i)} - y^{(i)}\right)^2$$
 </p>
@@ -281,38 +281,16 @@ b - \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}} \left(\mathbf{w}^\top \m
 $$<p>biçiminde ifade edilebilir. Yukarıdaki eşitliklerde $|\mathcal{B}|$ ile <em>yığın boyutu</em> (batch size) ve $\eta$ ile de <em>öğrenme parametresi</em> (learining rate) gösterilmektedir. Yığın boyutu ve öğrenme parametresini önceden belirlediğimizi, bunların öğrenilmediğini vurgulamak gerekir. Bu şekilde değiştirilebilen fakat öğrenme sırasında güncellenmeyen parametrelere <em>hiperparametre</em> denir. <em>Hiperparametre ayarlama</em> (hyerparameter tuning), bunların uygun biçimde seçilmesi işlemidir ve eğitim kümesi ile elde edilen sonuçların ayrı bir <em>doğrulama kümesi</em> (validation set) ile denenmesi sayesinde yapılabilir.</p>
 <p>Belli sayıda güncellemeden sonra ya da belli şartlar sağlandığında eğitme (training) durdurulur. Sonra bulduğumuz parametreler kaydedilir. Bu parametreler gerçek parametrelerin tamin edilen değerleridir ve $\hat{\mathbf{w}}, \hat{b}$ ile gösterilirler. Fonksiyonumuz tam olarak lineer olsa ve hiçbir ölçüm hatası olmasa bile elde ettiğimiz bu parametreler tam olarak doğru değildir çünkü algoritmamız sonlu sayıda adımda minimuma ulaşamaz.</p>
 <p>Lineer regresyon, konveks öğrenme problemi olduğundan bir tek (global) minimumu vardır. Daha kamaşık derin ağlarda kayıp yüzeyi üzerinde birçok minimum vardır. Neyse ki derin öğrenmede uygulayıcılar eğitim kümesi üzerinde minimumu bulmada fazla zorlanmazlar ve bunun matematiksel temeli halen çok iyi bilinmemektedir. Daha zor olanı, daha önce kullanmadığımız örnekler üzerinde düşük kayıp değeri veren parametreler bulmaktır. Buna probleme <em>genelleştirme</em> denir. İleride bu konulara değineceğiz.</p>
-<h3 id="Öğrenilen-Model-ile-Tahminler-Yapma">
-<a class="anchor" href="#%C3%96%C4%9Frenilen-Model-ile-Tahminler-Yapma" aria-hidden="true"><span class="octicon octicon-link"></span></a>Öğrenilen Model ile Tahminler Yapma<a class="anchor-link" href="#%C3%96%C4%9Frenilen-Model-ile-Tahminler-Yapma"> </a>
+<h3 id="Öğrenilen-Model-ile-Tahminler-Yapma-(Estimation)">
+<a class="anchor" href="#%C3%96%C4%9Frenilen-Model-ile-Tahminler-Yapma-(Estimation)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Öğrenilen Model ile Tahminler Yapma (Estimation)<a class="anchor-link" href="#%C3%96%C4%9Frenilen-Model-ile-Tahminler-Yapma-(Estimation)"> </a>
 </h3>
-<p>Given the learned linear regression model
-$\hat{\mathbf{w}}^\top \mathbf{x} + \hat{b}$,
-we can now estimate the price of a new house
-(not contained in the training data)
-given its area $x_1$ and age (year) $x_2$.
-Estimating targets given features is
-commonly called <em>prediction</em> and <em>inference</em>.</p>
-<p>We will try to stick with <em>prediction</em> because
-calling this step <em>inference</em>,
-despite emerging as standard jargon in deep learning,
-is somewhat of a misnomer.
-In statistics, <em>inference</em> more often denotes
-estimating parameters based on a dataset.
-This misuse of terminology is a common source of confusion
-when deep learning practitioners talk to statisticians.</p>
-<h3 id="Vectorization-for-Speed">
-<a class="anchor" href="#Vectorization-for-Speed" aria-hidden="true"><span class="octicon octicon-link"></span></a>Vectorization for Speed<a class="anchor-link" href="#Vectorization-for-Speed"> </a>
+<p>Öğrenimliş bir $\hat{\mathbf{w}}^\top \mathbf{x} + \hat{b}$ lineer regresyon modeli ile eğriyim kümemizde yer almayan örnekler için tahminde bulunabiliriz. Örneğin alanı $x_1$ ve yılı $x_2$ olan bir evin fiyatını tahmin edebiliriz. Özellikleri verilen hedefi tahmin etme işine <em>kestirim</em> (prediction) veya <em>çıkarım</em> (inference) denir.</p>
+<p>İstatistikte genellikle çıkarım ile parametrelerin veri kullanılarak tahmini ifade edilir. Dolayısıyla karışıklığa yol açmaması için derin öğrenme için kestirim kullanılacaktır.</p>
+<h3 id="Vektörleştirme-Hızlandırır">
+<a class="anchor" href="#Vekt%C3%B6rle%C5%9Ftirme-H%C4%B1zland%C4%B1r%C4%B1r" aria-hidden="true"><span class="octicon octicon-link"></span></a>Vektörleştirme Hızlandırır<a class="anchor-link" href="#Vekt%C3%B6rle%C5%9Ftirme-H%C4%B1zland%C4%B1r%C4%B1r"> </a>
 </h3>
-<p>When training our models, we typically want to process
-whole minibatches of examples simultaneously.
-Doing this efficiently requires that we vectorize the calculations
-and leverage fast linear algebra libraries
-rather than writing costly for-loops in Python.</p>
-<p>To illustrate why this matters so much,
-we can consider two methods for adding vectors.
-To start we instantiate two $10000$-dimensional vectors
-containing all ones.
-In one method we will loop over the vectors with a Python <code>for</code> loop.
-In the other method we will rely on a single call to <code>+</code>.</p>
+<p>Modeli eğitirken tüm küçük veri yığınlarını aynı anda işlemek isteriz. Bunu etkin bir şekilde yamanın yolu, işlemleri vektörleştirmek ve hızlı döngüler (<em>for loop</em> gibi) hızlı lineer cebir kütüphanelerini kullanmaktır.</p>
+<p>Vektörleştirmeye ihtiyacın daha iyi anlaşılması için vektörlerin toplamı için iki metod kullanalım. Önce $1$ rakamlarından oluşan $10000$ boyutlu vektörler alalım. İlk metod için Python'da vektörün bileşenleri üzerinden <code>for</code> döngüsü oluşturacağız. İkincisinde ise sadece bir kez <code>+</code> işlemcisini kullanacağız.</p>
 
 </div>
 </div>
@@ -345,9 +323,7 @@ In the other method we will rely on a single call to <code>+</code>.</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Since we will benchmark the running time frequently in this book,
-let us define a timer (hereafter accessed via the <code>d2l</code> package
-to track the running time.</p>
+<p>Zaman açısından kıyasamayı ileride de sık sık yapacağımızdan, bunun için <code>d2l</code> paketinde erişilmek üzere bir kronometre (timer) sınıfı tanımlayalım.</p>
 
 </div>
 </div>
@@ -397,9 +373,7 @@ to track the running time.</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now we can benchmark the workloads.
-First, we add them, one coordinate at a time,
-using a <code>for</code> loop.</p>
+<p>Şimdi işleri karşılaştırabiliriz. Önce <code>for</code> döngüsüyle bileşen bileşen toplama yapalım.</p>
 
 </div>
 </div>
@@ -444,7 +418,7 @@ using a <code>for</code> loop.</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Alternatively, we rely on the reloaded <code>+</code> operator to compute the elementwise sum:</p>
+<p>Şimdi de yukarıda yeniden tanımlanan <code>mxnet.np</code> (yukarıda çağırdık) içerisinde yer alan <code>+</code> işlemcisini kullanalım.</p>
 
 </div>
 </div>
@@ -487,14 +461,9 @@ using a <code>for</code> loop.</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>You probably noticed that the second method
-is dramatically faster than the first.
-Vectorizing code often yields order-of-magnitude speedups.
-Moreover, we push more of the math to the library
-and need not write as many calculations ourselves,
-reducing the potential for errors.</p>
-<h2 id="The-Normal-Distribution-and-Squared-Loss">
-<a class="anchor" href="#The-Normal-Distribution-and-Squared-Loss" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Normal Distribution and Squared Loss<a class="anchor-link" href="#The-Normal-Distribution-and-Squared-Loss"> </a>
+<p>İkincisinin farklı şekilde hızlı olduğu görülüyor. Kodu vektörleştirmek genellikle hızda üstel olarak değişen azalmalar sağlar. Hatta, işlemleri hazır kütüphaneleri kullanarak yaptırdığımızdan hataların da azalmasını sağlamış oluruz.</p>
+<h2 id="Normal-Dağılım-ve-En-Küçük-Kareler-Kayıp-Fonksiyonu">
+<a class="anchor" href="#Normal-Da%C4%9F%C4%B1l%C4%B1m-ve-En-K%C3%BC%C3%A7%C3%BCk-Kareler-Kay%C4%B1p-Fonksiyonu" aria-hidden="true"><span class="octicon octicon-link"></span></a>Normal Dağılım ve En Küçük Kareler Kayıp Fonksiyonu<a class="anchor-link" href="#Normal-Da%C4%9F%C4%B1l%C4%B1m-ve-En-K%C3%BC%C3%A7%C3%BCk-Kareler-Kay%C4%B1p-Fonksiyonu"> </a>
 </h2>
 <p>While you can already get your hands dirty using only the information above,
 in the following section we can more formally motivate the square loss objective
