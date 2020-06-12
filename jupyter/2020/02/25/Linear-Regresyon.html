@@ -163,7 +163,7 @@ window.onload = wrap_img;
 </li>
 <li class="toc-entry toc-h2"><a href="#Normal-Da%C4%9F%C4%B1l%C4%B1m-ve-En-K%C3%BC%C3%A7%C3%BCk-Kareler-Kay%C4%B1p-Fonksiyonu">Normal Dağılım ve En Küçük Kareler Kayıp Fonksiyonu </a></li>
 <li class="toc-entry toc-h2">
-<a href="#From-Linear-Regression-to-Deep-Networks">From Linear Regression to Deep Networks </a>
+<a href="#L%C4%B0neer-Regresyondan-Derin-A%C4%9Flara-(Deep-Networks)">Lİneer Regresyondan Derin Ağlara (Deep Networks) </a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#Neural-Network-Diagram">Neural Network Diagram </a></li>
 <li class="toc-entry toc-h3"><a href="#Biology">Biology </a></li>
@@ -535,7 +535,7 @@ $$p(z) = \frac{1}{\sqrt{2 \pi \sigma^2}} \exp\left(-\frac{1}{2 \sigma^2} (z - \m
 <span class="n">parameters</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
 <span class="n">d2l</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="n">normal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span> <span class="k">for</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">],</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">'z'</span><span class="p">,</span>
          <span class="n">ylabel</span><span class="o">=</span><span class="s1">'p(z)'</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),</span>
-         <span class="n">legend</span><span class="o">=</span><span class="p">[</span><span class="s1">'ort </span><span class="si">%d</span><span class="s1">, var </span><span class="si">%d</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span> <span class="k">for</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">])</span>
+         <span class="n">legend</span><span class="o">=</span><span class="p">[</span><span class="s1">'ort </span><span class="si">%d</span><span class="s1">, var </span><span class="si">%d</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span> <span class="k">for</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">]);</span>
 </pre></div>
 
     </div>
@@ -580,7 +580,7 @@ z
    <g id="matplotlib.axis_1">
     <g id="xtick_1">
      <g id="line2d_1">
-      <path clip-path="url(#p0a16805611)" d="M 71.511736 143.1 
+      <path clip-path="url(#p577ab8d339)" d="M 71.511736 143.1 
 L 71.511736 7.2 
 " style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"></path>
      </g>
@@ -588,10 +588,10 @@ L 71.511736 7.2
       <defs>
        <path d="M 0 0 
 L 0 3.5 
-" id="m83ff5e50a7" style="stroke:#000000;stroke-width:0.8;"></path>
+" id="m014f73f44f" style="stroke:#000000;stroke-width:0.8;"></path>
       </defs>
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="71.511736" xlink:href="#m83ff5e50a7" y="143.1"></use>
+       <use style="stroke:#000000;stroke-width:0.8;" x="71.511736" xlink:href="#m014f73f44f" y="143.1"></use>
       </g>
      </g>
      <g id="text_1">
@@ -642,13 +642,13 @@ z
     </g>
     <g id="xtick_2">
      <g id="line2d_3">
-      <path clip-path="url(#p0a16805611)" d="M 104.145436 143.1 
+      <path clip-path="url(#p577ab8d339)" d="M 104.145436 143.1 
 L 104.145436 7.2 
 " style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"></path>
      </g>
      <g id="line2d_4">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="104.145436" xlink:href="#m83ff5e50a7" y="143.1"></use>
+       <use style="stroke:#000000;stroke-width:0.8;" x="104.145436" xlink:href="#m014f73f44f" y="143.1"></use>
       </g>
      </g>
      <g id="text_2">
@@ -680,13 +680,13 @@ z
     </g>
     <g id="xtick_3">
      <g id="line2d_5">
-      <path clip-path="url(#p0a16805611)" d="M 136.779136 143.1 
+      <path clip-path="url(#p577ab8d339)" d="M 136.779136 143.1 
 L 136.779136 7.2 
 " style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"></path>
      </g>
      <g id="line2d_6">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="136.779136" xlink:href="#m83ff5e50a7" y="143.1"></use>
+       <use style="stroke:#000000;stroke-width:0.8;" x="136.779136" xlink:href="#m014f73f44f" y="143.1"></use>
       </g>
      </g>
      <g id="text_3">
@@ -725,13 +725,13 @@ z
     </g>
     <g id="xtick_4">
      <g id="line2d_7">
-      <path clip-path="url(#p0a16805611)" d="M 169.412836 143.1 
+      <path clip-path="url(#p577ab8d339)" d="M 169.412836 143.1 
 L 169.412836 7.2 
 " style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"></path>
      </g>
      <g id="line2d_8">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="169.412836" xlink:href="#m83ff5e50a7" y="143.1"></use>
+       <use style="stroke:#000000;stroke-width:0.8;" x="169.412836" xlink:href="#m014f73f44f" y="143.1"></use>
       </g>
      </g>
      <g id="text_4">
@@ -766,13 +766,13 @@ z
     </g>
     <g id="xtick_5">
      <g id="line2d_9">
-      <path clip-path="url(#p0a16805611)" d="M 202.046536 143.1 
+      <path clip-path="url(#p577ab8d339)" d="M 202.046536 143.1 
 L 202.046536 7.2 
 " style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"></path>
      </g>
      <g id="line2d_10">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="202.046536" xlink:href="#m83ff5e50a7" y="143.1"></use>
+       <use style="stroke:#000000;stroke-width:0.8;" x="202.046536" xlink:href="#m014f73f44f" y="143.1"></use>
       </g>
      </g>
      <g id="text_5">
@@ -784,13 +784,13 @@ L 202.046536 7.2
     </g>
     <g id="xtick_6">
      <g id="line2d_11">
-      <path clip-path="url(#p0a16805611)" d="M 234.680236 143.1 
+      <path clip-path="url(#p577ab8d339)" d="M 234.680236 143.1 
 L 234.680236 7.2 
 " style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"></path>
      </g>
      <g id="line2d_12">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="234.680236" xlink:href="#m83ff5e50a7" y="143.1"></use>
+       <use style="stroke:#000000;stroke-width:0.8;" x="234.680236" xlink:href="#m014f73f44f" y="143.1"></use>
       </g>
      </g>
      <g id="text_6">
@@ -802,13 +802,13 @@ L 234.680236 7.2
     </g>
     <g id="xtick_7">
      <g id="line2d_13">
-      <path clip-path="url(#p0a16805611)" d="M 267.313936 143.1 
+      <path clip-path="url(#p577ab8d339)" d="M 267.313936 143.1 
 L 267.313936 7.2 
 " style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"></path>
      </g>
      <g id="line2d_14">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="267.313936" xlink:href="#m83ff5e50a7" y="143.1"></use>
+       <use style="stroke:#000000;stroke-width:0.8;" x="267.313936" xlink:href="#m014f73f44f" y="143.1"></use>
       </g>
      </g>
      <g id="text_7">
@@ -842,7 +842,7 @@ z
    <g id="matplotlib.axis_2">
     <g id="ytick_1">
      <g id="line2d_15">
-      <path clip-path="url(#p0a16805611)" d="M 43.78125 136.922727 
+      <path clip-path="url(#p577ab8d339)" d="M 43.78125 136.922727 
 L 294.88125 136.922727 
 " style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"></path>
      </g>
@@ -850,10 +850,10 @@ L 294.88125 136.922727
       <defs>
        <path d="M 0 0 
 L -3.5 0 
-" id="m1df48dd701" style="stroke:#000000;stroke-width:0.8;"></path>
+" id="mc493c6866f" style="stroke:#000000;stroke-width:0.8;"></path>
       </defs>
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="43.78125" xlink:href="#m1df48dd701" y="136.922727"></use>
+       <use style="stroke:#000000;stroke-width:0.8;" x="43.78125" xlink:href="#mc493c6866f" y="136.922727"></use>
       </g>
      </g>
      <g id="text_9">
@@ -875,13 +875,13 @@ z
     </g>
     <g id="ytick_2">
      <g id="line2d_17">
-      <path clip-path="url(#p0a16805611)" d="M 43.78125 105.954475 
+      <path clip-path="url(#p577ab8d339)" d="M 43.78125 105.954475 
 L 294.88125 105.954475 
 " style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"></path>
      </g>
      <g id="line2d_18">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="43.78125" xlink:href="#m1df48dd701" y="105.954475"></use>
+       <use style="stroke:#000000;stroke-width:0.8;" x="43.78125" xlink:href="#mc493c6866f" y="105.954475"></use>
       </g>
      </g>
      <g id="text_10">
@@ -910,13 +910,13 @@ z
     </g>
     <g id="ytick_3">
      <g id="line2d_19">
-      <path clip-path="url(#p0a16805611)" d="M 43.78125 74.986223 
+      <path clip-path="url(#p577ab8d339)" d="M 43.78125 74.986223 
 L 294.88125 74.986223 
 " style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"></path>
      </g>
      <g id="line2d_20">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="43.78125" xlink:href="#m1df48dd701" y="74.986223"></use>
+       <use style="stroke:#000000;stroke-width:0.8;" x="43.78125" xlink:href="#mc493c6866f" y="74.986223"></use>
       </g>
      </g>
      <g id="text_11">
@@ -930,13 +930,13 @@ L 294.88125 74.986223
     </g>
     <g id="ytick_4">
      <g id="line2d_21">
-      <path clip-path="url(#p0a16805611)" d="M 43.78125 44.017971 
+      <path clip-path="url(#p577ab8d339)" d="M 43.78125 44.017971 
 L 294.88125 44.017971 
 " style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"></path>
      </g>
      <g id="line2d_22">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="43.78125" xlink:href="#m1df48dd701" y="44.017971"></use>
+       <use style="stroke:#000000;stroke-width:0.8;" x="43.78125" xlink:href="#mc493c6866f" y="44.017971"></use>
       </g>
      </g>
      <g id="text_12">
@@ -984,13 +984,13 @@ z
     </g>
     <g id="ytick_5">
      <g id="line2d_23">
-      <path clip-path="url(#p0a16805611)" d="M 43.78125 13.049719 
+      <path clip-path="url(#p577ab8d339)" d="M 43.78125 13.049719 
 L 294.88125 13.049719 
 " style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"></path>
      </g>
      <g id="line2d_24">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="43.78125" xlink:href="#m1df48dd701" y="13.049719"></use>
+       <use style="stroke:#000000;stroke-width:0.8;" x="43.78125" xlink:href="#mc493c6866f" y="13.049719"></use>
       </g>
      </g>
      <g id="text_13">
@@ -1066,7 +1066,7 @@ z
     </g>
    </g>
    <g id="line2d_25">
-    <path clip-path="url(#p0a16805611)" d="M 55.194886 136.922727 
+    <path clip-path="url(#p577ab8d339)" d="M 55.194886 136.922727 
 L 108.224649 136.813535 
 L 113.609208 136.566288 
 L 117.198915 136.184417 
@@ -1136,7 +1136,7 @@ L 283.467614 136.922727
 " style="fill:none;stroke:#1f77b4;stroke-linecap:square;stroke-width:1.5;"></path>
    </g>
    <g id="line2d_26">
-    <path clip-path="url(#p0a16805611)" d="M 55.194886 136.7876 
+    <path clip-path="url(#p577ab8d339)" d="M 55.194886 136.7876 
 L 65.80084 136.522951 
 L 73.14342 136.126434 
 L 79.017488 135.590287 
@@ -1199,7 +1199,7 @@ L 283.467614 136.785216
 " style="fill:none;stroke:#bf00bf;stroke-dasharray:5.55,2.4;stroke-dashoffset:0;stroke-width:1.5;"></path>
    </g>
    <g id="line2d_27">
-    <path clip-path="url(#p0a16805611)" d="M 55.194886 136.922727 
+    <path clip-path="url(#p577ab8d339)" d="M 55.194886 136.922727 
 L 157.175199 136.813535 
 L 162.559758 136.566288 
 L 166.149461 136.184417 
@@ -1483,7 +1483,7 @@ L 72.78125 49.654688
   </g>
  </g>
  <defs>
-  <clippath id="p0a16805611">
+  <clippath id="p577ab8d339">
    <rect height="135.9" width="251.1" x="43.78125" y="7.2"></rect>
   </clippath>
  </defs>
@@ -1502,50 +1502,26 @@ L 72.78125 49.654688
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As you can see, changing the mean corresponds to a shift along the <em>x axis</em>,
-and increasing the variance spreads the distribution out, lowering its peak.</p>
-<p>One way to motivate linear regression with the mean squared error loss function
-is to formally assume that observations arise from noisy observations,
-where the noise is normally distributed as follows</p>
+<p>Görüldüğü gibi ortalamayı değiştirmek $x$ ekseninde kaymalara, yaryansı değiştirmek dağılımın genişlemesine veya daralmasına sebep oluyor.</p>
+<p>Lineer regresyonda en küçük karelerin kullanımını açıklamak için, gözlemlerdeki hataların gürültülü olduğunu ve bu gürültünün normal dağılımdan geldiğini kabul edelim:</p>
 <p>
-$$y = \mathbf{w}^\top \mathbf{x} + b + \epsilon \text{ where } \epsilon \sim \mathcal{N}(0, \sigma^2).$$
+$$\epsilon \sim \mathcal{N}(0, \sigma^2) \text{ olmak üzere } y = \mathbf{w}^\top \mathbf{x} + b + \epsilon.$$
 </p>
-<p>Thus, we can now write out the <em>likelihood</em>
-of seeing a particular $y$ for a given $\mathbf{x}$ via</p>
+<p>Dolayısıyla verilen bir $\mathbf{x}$ için özel bir $y$ görmenin olabililirlik (likelihood) fonksiyonunu</p>
 <p>
-$$p(y|\mathbf{x}) = \frac{1}{\sqrt{2 \pi \sigma^2}} \exp\left(-\frac{1}{2 \sigma^2} (y - \mathbf{w}^\top \mathbf{x} - b)^2\right).$$
+$$p(y|\mathbf{x}) = \frac{1}{\sqrt{2 \pi \sigma^2}} \exp\left(-\frac{1}{2 \sigma^2} (y - \mathbf{w}^\top \mathbf{x} - b)^2\right)$$
 </p>
-<p>Now, according to the <em>maximum likelihood principle</em>,
-the best values of $b$ and $\mathbf{w}$ are those
-that maximize the <em>likelihood</em> of the entire dataset:</p>
+<p>şeklinde yazabiliriz. Buradan maksimum olabilirlik prensibine göre $b$ ve $\mathbf{w}$ parametrelerinin en iyi değerleri veri kümesinin olabilirliğini en büyük yapanlardır:</p>
 <p>
 $$P(Y\mid X) = \prod_{i=1}^{n} p(y^{(i)}|\mathbf{x}^{(i)}).$$
 </p>
-<p>Estimators chosen according to the <em>maximum likelihood principle</em>
-are called <em>Maximum Likelihood Estimators</em> (MLE).
-While, maximizing the product of many exponential functions,
-might look difficult,
-we can simplify things significantly, without changing the objective,
-by maximizing the log of the likelihood instead.
-For historical reasons, optimizations are more often expressed
-as minimization rather than maximization.
-So, without changing anything we can minimize the <em>Negative Log-Likelihood (NLL)</em>
-$-\log p(\mathbf y|\mathbf X)$.
-Working out the math gives us:</p>
+<p>Maksimum olabilirlik prensibine göre seçilen kestiricilere (estimators) <em>maksimum olabilirlik kestiricileri</em> (MLE) denir. Üstel fonksiyonların çarpımını maksimum yapmak yerine genellikle logaritması maksimum yaılır. Optimizasyonda alışkanlık olarak maksimum yerine minimum incelendiğinden olabilirlik fonksiyonunun  negatifinin minimumunu arayacağız (NLL - Negative Log-Likelihood): $-\log p(\mathbf y|\mathbf X)$. İşlem yapılırsa</p>
 <p>
-$$-\log p(\mathbf y|\mathbf X) = \sum_{i=1}^n \frac{1}{2} \log(2 \pi \sigma^2) + \frac{1}{2 \sigma^2} \left(y^{(i)} - \mathbf{w}^\top \mathbf{x}^{(i)} - b\right)^2.$$
+$$-\log p(\mathbf y|\mathbf X) = \sum_{i=1}^n \frac{1}{2} \log(2 \pi \sigma^2) + \frac{1}{2 \sigma^2} \left(y^{(i)} - \mathbf{w}^\top \mathbf{x}^{(i)} - b\right)^2$$
 </p>
-<p>Now we just need one more assumption: that $\sigma$ is some fixed constant.
-Thus we can ignore the first term because
-it does not depend on $\mathbf{w}$ or $b$.
-Now the second term is identical to the squared error objective introduced earlier,
-but for the multiplicative constant $\frac{1}{\sigma^2}$.
-Fortunately, the solution does not depend on $\sigma$.
-It follows that minimizing squared error
-is equivalent to maximum likelihood estimation
-of a linear model under the assumption of additive Gaussian noise.</p>
-<h2 id="From-Linear-Regression-to-Deep-Networks">
-<a class="anchor" href="#From-Linear-Regression-to-Deep-Networks" aria-hidden="true"><span class="octicon octicon-link"></span></a>From Linear Regression to Deep Networks<a class="anchor-link" href="#From-Linear-Regression-to-Deep-Networks"> </a>
+<p>elde edilir. Şimdi yapacağımız son kabul $\sigma$ yani varyansın sabit olması. Dolayısıyla yukarıdaki eşitliğin sağ tarafındaki ilk terim ihmal edilebilir çünkü $\mathbf{w}$ veya $b$ ile bağımlı değildir. Maksimumu bulmak için türev alacağımız için türevi sıfır olacak birşeyi almadık. İkinci terim ise $\frac{1}{\sigma^2}$ katsayısı hariç hataların kareleri toplamıdır. Neyse ki çözüm $\sigma$ varyansından bağımsızdır. Sonuç olarak, hataların karelerinin toplamını minimize etmenin, Gauss dağılımından gelen gürültü eklenmiş lineer modelin maksimum olabilirlik çıkarımına denk olduğunu gösterdik.</p>
+<h2 id="Lİneer-Regresyondan-Derin-Ağlara-(Deep-Networks)">
+<a class="anchor" href="#L%C4%B0neer-Regresyondan-Derin-A%C4%9Flara-(Deep-Networks)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Lİneer Regresyondan Derin Ağlara (Deep Networks)<a class="anchor-link" href="#L%C4%B0neer-Regresyondan-Derin-A%C4%9Flara-(Deep-Networks)"> </a>
 </h2>
 <p>So far we only talked about linear functions.
 While neural networks cover a much richer family of models,
