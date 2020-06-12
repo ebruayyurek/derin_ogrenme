@@ -165,7 +165,7 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h2">
 <a href="#L%C4%B0neer-Regresyondan-Derin-A%C4%9Flara-(Deep-Networks)">Lİneer Regresyondan Derin Ağlara (Deep Networks) </a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#Yaay-Sinir-A%C4%9F%C4%B1-Diyagram%C4%B1">Yaay Sinir Ağı Diyagramı </a></li>
+<li class="toc-entry toc-h3"><a href="#Yapay-Sinir-A%C4%9F%C4%B1-Diyagram%C4%B1">Yapay Sinir Ağı Diyagramı </a></li>
 <li class="toc-entry toc-h3"><a href="#Biyoloji">Biyoloji </a></li>
 </ul>
 </li>
@@ -1524,8 +1524,8 @@ $$-\log p(\mathbf y|\mathbf X) = \sum_{i=1}^n \frac{1}{2} \log(2 \pi \sigma^2) +
 <a class="anchor" href="#L%C4%B0neer-Regresyondan-Derin-A%C4%9Flara-(Deep-Networks)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Lİneer Regresyondan Derin Ağlara (Deep Networks)<a class="anchor-link" href="#L%C4%B0neer-Regresyondan-Derin-A%C4%9Flara-(Deep-Networks)"> </a>
 </h2>
 <p>Şu ana kadar adece lineer fonksiyonlala çalıştık. Sinir ağları (neural networks) çok geniş bir model ailesini kapsar ama lineer modeli sinir ağları içerisinde tanımlamak iyi bir başlangıç olacaktır. Şimdi modelimizi <em>katmak</em> (layer) gösterimi ile ifade edelim.</p>
-<h3 id="Yaay-Sinir-Ağı-Diyagramı">
-<a class="anchor" href="#Yaay-Sinir-A%C4%9F%C4%B1-Diyagram%C4%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Yaay Sinir Ağı Diyagramı<a class="anchor-link" href="#Yaay-Sinir-A%C4%9F%C4%B1-Diyagram%C4%B1"> </a>
+<h3 id="Yapay-Sinir-Ağı-Diyagramı">
+<a class="anchor" href="#Yapay-Sinir-A%C4%9F%C4%B1-Diyagram%C4%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Yapay Sinir Ağı Diyagramı<a class="anchor-link" href="#Yapay-Sinir-A%C4%9F%C4%B1-Diyagram%C4%B1"> </a>
 </h3>
 <p>Derin Öğrenme uygulayıcıları modelin diyagramını çizerek görselleştirmek isterler. Aşağıda lineer modeli bir sinir ağı olarak gösteriyoruz. Burada sadece bağlantılar gösteriliyor, ağırlıkların değerleri verilmiyor. Görüldüğü gibi bu durumda her girdi (input) çıktıya (output) bağlı.</p>
 <p><img src="https://d2l.ai/_images/singleneuron.svg" alt="Linear regression is a single-layer neural network. "></p>
@@ -1533,20 +1533,7 @@ $$-\log p(\mathbf y|\mathbf X) = \sum_{i=1}^n \frac{1}{2} \log(2 \pi \sigma^2) +
 <h3 id="Biyoloji">
 <a class="anchor" href="#Biyoloji" aria-hidden="true"><span class="octicon octicon-link"></span></a>Biyoloji<a class="anchor-link" href="#Biyoloji"> </a>
 </h3>
-<p>Since linear regression (invented in 1795)
-predates computational neuroscience,
-it might seem anachronistic to describe
-linear regression as a neural network.
-To see why linear models were a natural place to begin
-when the cyberneticists/neurophysiologists
-Warren McCulloch and Walter Pitts began to develop
-models of artificial neurons,
-consider the cartoonish picture
-of a biological neuron in :numref:<code>fig_Neuron</code>, consisting of
-<em>dendrites</em> (input terminals),
-the <em>nucleus</em> (CPU), the <em>axon</em> (output wire),
-and the <em>axon terminals</em> (output terminals),
-enabling connections to other neurons via <em>synapses</em>.</p>
+<p>Lineer regresyon (1795) hesaplamalı yapay sinir ağlarından daha eski olsa da lineer regresyonu sinir ağlarının kronolojisine yerleştirmek doğru olmaz. Lineer modellerin yaay sinir ağlarına başlangıç için neden iyi oldğunu görmek için sibernetik/nöroeurofizyoloji uzmanı Warren McCulloch ve Walter Pitts tarafından yaay sinir ağlarının nasıl geliştirildiğine bakalım. Aşağıdaki resimde girdi terminali (dendrites), işlemci (nucleus), çıkış kablosu (axon) ve çıkış terminali (axon terminals) ve diğer nöronlara bağlantıyı sinapsis ile sağlayan bağlantılar vardır.</p>
 <p><img src="https://d2l.ai/_images/Neuron.svg" alt="The real neuron">
 <img class="emoji" title=":label:" alt=":label:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f3f7.png" height="20" width="20"><code>fig_Neuron</code></p>
 <p>Information $x_i$ arriving from other neurons
