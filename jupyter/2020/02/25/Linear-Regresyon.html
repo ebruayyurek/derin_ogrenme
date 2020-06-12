@@ -115,7 +115,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      17 min read
+      16 min read
     
 </span></p>
 
@@ -165,8 +165,8 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h2">
 <a href="#L%C4%B0neer-Regresyondan-Derin-A%C4%9Flara-(Deep-Networks)">Lİneer Regresyondan Derin Ağlara (Deep Networks) </a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#Neural-Network-Diagram">Neural Network Diagram </a></li>
-<li class="toc-entry toc-h3"><a href="#Biology">Biology </a></li>
+<li class="toc-entry toc-h3"><a href="#Yaay-Sinir-A%C4%9F%C4%B1-Diyagram%C4%B1">Yaay Sinir Ağı Diyagramı </a></li>
+<li class="toc-entry toc-h3"><a href="#Biyoloji">Biyoloji </a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#Summary">Summary </a></li>
@@ -436,7 +436,7 @@ $$<p>biçiminde ifade edilebilir. Yukarıdaki eşitliklerde $|\mathcal{B}|$ ile 
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Şimdi de yukarıda yeniden tanımlanan <code>mxnet.np</code> (yukarıda çağırdık) içerisinde yer alan <code>+</code> işlemcisini kullanalım.</p>
+<p>Şimdi de <code>mxnet.np</code> (yukarıda çağırdık) yeniden tanımlanan <code>+</code> işlemcisini kullanalım.</p>
 
 </div>
 </div>
@@ -1523,35 +1523,15 @@ $$-\log p(\mathbf y|\mathbf X) = \sum_{i=1}^n \frac{1}{2} \log(2 \pi \sigma^2) +
 <h2 id="Lİneer-Regresyondan-Derin-Ağlara-(Deep-Networks)">
 <a class="anchor" href="#L%C4%B0neer-Regresyondan-Derin-A%C4%9Flara-(Deep-Networks)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Lİneer Regresyondan Derin Ağlara (Deep Networks)<a class="anchor-link" href="#L%C4%B0neer-Regresyondan-Derin-A%C4%9Flara-(Deep-Networks)"> </a>
 </h2>
-<p>So far we only talked about linear functions.
-While neural networks cover a much richer family of models,
-we can begin thinking of the linear model
-as a neural network by expressing it in the language of neural networks.
-To begin, let us start by rewriting things in a 'layer' notation.</p>
-<h3 id="Neural-Network-Diagram">
-<a class="anchor" href="#Neural-Network-Diagram" aria-hidden="true"><span class="octicon octicon-link"></span></a>Neural Network Diagram<a class="anchor-link" href="#Neural-Network-Diagram"> </a>
+<p>Şu ana kadar adece lineer fonksiyonlala çalıştık. Sinir ağları (neural networks) çok geniş bir model ailesini kapsar ama lineer modeli sinir ağları içerisinde tanımlamak iyi bir başlangıç olacaktır. Şimdi modelimizi <em>katmak</em> (layer) gösterimi ile ifade edelim.</p>
+<h3 id="Yaay-Sinir-Ağı-Diyagramı">
+<a class="anchor" href="#Yaay-Sinir-A%C4%9F%C4%B1-Diyagram%C4%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Yaay Sinir Ağı Diyagramı<a class="anchor-link" href="#Yaay-Sinir-A%C4%9F%C4%B1-Diyagram%C4%B1"> </a>
 </h3>
-<p>Deep learning practitioners like to draw diagrams
-to visualize what is happening in their models.
-In :numref:<code>fig_single_neuron</code>,
-we depict our linear model as a neural network.
-Note that these diagrams indicate the connectivity pattern
-(here, each input is connected to the output)
-but not the values taken by the weights or biases.</p>
-<p><img src="https://d2l.ai/_images/singleneuron.svg" alt="Linear regression is a single-layer neural network. ">
-<img class="emoji" title=":label:" alt=":label:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f3f7.png" height="20" width="20"><code>fig_single_neuron</code></p>
-<p>Because there is just a single computed neuron (node) in the graph
-(the input values are not computed but given),
-we can think of linear models as neural networks
-consisting of just a single artificial neuron.
-Since for this model, every input is connected
-to every output (in this case there is only one output!),
-we can regard this transformation as a <em>fully-connected layer</em>,
-also commonly called a <em>dense layer</em>.
-We will talk a lot more about networks composed of such layers
-in the next chapter on multilayer perceptrons.</p>
-<h3 id="Biology">
-<a class="anchor" href="#Biology" aria-hidden="true"><span class="octicon octicon-link"></span></a>Biology<a class="anchor-link" href="#Biology"> </a>
+<p>Derin Öğrenme uygulayıcıları modelin diyagramını çizerek görselleştirmek isterler. Aşağıda lineer modeli bir sinir ağı olarak gösteriyoruz. Burada sadece bağlantılar gösteriliyor, ağırlıkların değerleri verilmiyor. Görüldüğü gibi bu durumda her girdi (input) çıktıya (output) bağlı.</p>
+<p><img src="https://d2l.ai/_images/singleneuron.svg" alt="Linear regression is a single-layer neural network. "></p>
+<p>Gafikte hesalanacak bir tek neron veya düğüm (node) olduğundan, lineer modeli tek sinir hücreli (neuron) yapay (artificial) sinir ağı olarak görürüz. Girdiler hazır verildiği için hesaplanmaz. Bu modelde her girdi çıktıya bağlı olduğundan bu dönüşüme <em>tam bağlantılı katman</em> (fully-connected layer) veya <em>yoğun katman</em> (dense layer) denir. Bu tür katmanları daha sonra ayrıntılı inceleyeceğiz.</p>
+<h3 id="Biyoloji">
+<a class="anchor" href="#Biyoloji" aria-hidden="true"><span class="octicon octicon-link"></span></a>Biyoloji<a class="anchor-link" href="#Biyoloji"> </a>
 </h3>
 <p>Since linear regression (invented in 1795)
 predates computational neuroscience,
