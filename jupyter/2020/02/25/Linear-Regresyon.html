@@ -157,7 +157,7 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#Kay%C4%B1p-Fonksiyonu-(Loss-Function)">Kayıp Fonksiyonu (Loss Function) </a></li>
 <li class="toc-entry toc-h3"><a href="#Analitik-%C3%87%C3%B6z%C3%BCm">Analitik Çözüm </a></li>
 <li class="toc-entry toc-h3"><a href="#Gradient-Azal%C4%B1m-(Gradient-descent)">Gradient Azalım (Gradient descent) </a></li>
-<li class="toc-entry toc-h3"><a href="#Making-Predictions-with-the-Learned-Model">Making Predictions with the Learned Model </a></li>
+<li class="toc-entry toc-h3"><a href="#%C3%96%C4%9Frenilen-Model-ile-Tahminler-Yapma">Öğrenilen Model ile Tahminler Yapma </a></li>
 <li class="toc-entry toc-h3"><a href="#Vectorization-for-Speed">Vectorization for Speed </a></li>
 </ul>
 </li>
@@ -233,7 +233,7 @@ $${\hat{\mathbf{y}}} = \mathbf{X} \mathbf{w} + b,$$
 <h3 id="Kayıp-Fonksiyonu-(Loss-Function)">
 <a class="anchor" href="#Kay%C4%B1p-Fonksiyonu-(Loss-Function)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Kayıp Fonksiyonu (Loss Function)<a class="anchor-link" href="#Kay%C4%B1p-Fonksiyonu-(Loss-Function)"> </a>
 </h3>
-<p>Modelimizi veriye uydurmaya başlamadan önce <em>uyum</em> (fitness) için bir ölçeğe ihtiyacımız var. <em>Kayı fonksiyonu</em> sayesinde <em>gerçek</em> ve <em>tahmini</em> değer arasındaki mesafeyi ölçeriz. Kayıp genellikle negatif olmayan bir sayıdır ve küçük olması istenir hatta mükemmel sonuç için sıfırdır. Regresyon problemlerinde en çok kullanılan kayıp fonksiyonu hataların karelerinin toplamıdır. Eğer $i$ numaralı örneğimiz için tahminimiz $\hat{y}^{(i)}$ ve karşılık gelen doğru etiket $y^{(i)}$ ise, hatanın karesi</p>
+<p>Modelimizi veriye uydurmaya başlamadan önce <em>uyum</em> (fitness) için bir ölçeğe ihtiyacımız var. <em>Kayıp fonksiyonu</em> sayesinde <em>gerçek</em> ve <em>tahmini</em> değer arasındaki mesafeyi ölçeriz. Kayıp genellikle negatif olmayan bir sayıdır ve küçük olması istenir hatta mükemmel sonuç için sıfırdır. Regresyon problemlerinde en çok kullanılan kayıp fonksiyonu hataların karelerinin toplamıdır. Eğer $i$ numaralı örneğimiz için tahminimiz $\hat{y}^{(i)}$ ve karşılık gelen doğru etiket $y^{(i)}$ ise, hatanın karesi</p>
 <p>
 $$l^{(i)}(\mathbf{w}, b) = \frac{1}{2} \left(\hat{y}^{(i)} - y^{(i)}\right)^2$$
 </p>
@@ -279,10 +279,10 @@ b &amp;\leftarrow b -  \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}} \part
 b - \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}} \left(\mathbf{w}^\top \mathbf{x}^{(i)} + b - y^{(i)}\right)
 \end{aligned}
 $$<p>biçiminde ifade edilebilir. Yukarıdaki eşitliklerde $|\mathcal{B}|$ ile <em>yığın boyutu</em> (batch size) ve $\eta$ ile de <em>öğrenme parametresi</em> (learining rate) gösterilmektedir. Yığın boyutu ve öğrenme parametresini önceden belirlediğimizi, bunların öğrenilmediğini vurgulamak gerekir. Bu şekilde değiştirilebilen fakat öğrenme sırasında güncellenmeyen parametrelere <em>hiperparametre</em> denir. <em>Hiperparametre ayarlama</em> (hyerparameter tuning), bunların uygun biçimde seçilmesi işlemidir ve eğitim kümesi ile elde edilen sonuçların ayrı bir <em>doğrulama kümesi</em> (validation set) ile denenmesi sayesinde yapılabilir.</p>
-<p>Belli sayıda güncellemeden sonra ya da belli şartlar sağlandığında eğitme (training) durdurulur. Sonra bulduğumuz parametreler kaydedilir. Bu arametreler gerçek parametrelerin tamin edilen değerleridir ve $\hat{\mathbf{w}}, \hat{b}$ ile gösterilirler. Fonksiyonumuz tam olarak lineer olsa ve hiçbir ölçüm hatası olmasa bile elde ettiğimiz bu parametreler tam olarak doğru değildir çünkü algoritmamız sonlu sayıda adımda minimuma ulaşamaz.</p>
-<p>Lineer regresyon, konveks öğrenme roblemi olduğundan bir tek (global) minimumu vardır. Daha kamaşık derin ağlarda kayıp yüzeyi üzerinde birçok minimum vardır. Neyse ki derin öğrenmede uygulayıcılar eğitim kümesi üzerinde minimumu bulmada fazla zorlanmazlar ve bunun matematiksel temeli halen çok iyi bilinmemektedir. Daha zor olanı, daha önce kullanmadığımız örnekler üzerinde düşük kayıp değeri veren parametreler bulmaktır. Buna probleme <em>genelleştirme</em> denir. İleride bu konulara değineceğiz.</p>
-<h3 id="Making-Predictions-with-the-Learned-Model">
-<a class="anchor" href="#Making-Predictions-with-the-Learned-Model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Making Predictions with the Learned Model<a class="anchor-link" href="#Making-Predictions-with-the-Learned-Model"> </a>
+<p>Belli sayıda güncellemeden sonra ya da belli şartlar sağlandığında eğitme (training) durdurulur. Sonra bulduğumuz parametreler kaydedilir. Bu parametreler gerçek parametrelerin tamin edilen değerleridir ve $\hat{\mathbf{w}}, \hat{b}$ ile gösterilirler. Fonksiyonumuz tam olarak lineer olsa ve hiçbir ölçüm hatası olmasa bile elde ettiğimiz bu parametreler tam olarak doğru değildir çünkü algoritmamız sonlu sayıda adımda minimuma ulaşamaz.</p>
+<p>Lineer regresyon, konveks öğrenme problemi olduğundan bir tek (global) minimumu vardır. Daha kamaşık derin ağlarda kayıp yüzeyi üzerinde birçok minimum vardır. Neyse ki derin öğrenmede uygulayıcılar eğitim kümesi üzerinde minimumu bulmada fazla zorlanmazlar ve bunun matematiksel temeli halen çok iyi bilinmemektedir. Daha zor olanı, daha önce kullanmadığımız örnekler üzerinde düşük kayıp değeri veren parametreler bulmaktır. Buna probleme <em>genelleştirme</em> denir. İleride bu konulara değineceğiz.</p>
+<h3 id="Öğrenilen-Model-ile-Tahminler-Yapma">
+<a class="anchor" href="#%C3%96%C4%9Frenilen-Model-ile-Tahminler-Yapma" aria-hidden="true"><span class="octicon octicon-link"></span></a>Öğrenilen Model ile Tahminler Yapma<a class="anchor-link" href="#%C3%96%C4%9Frenilen-Model-ile-Tahminler-Yapma"> </a>
 </h3>
 <p>Given the learned linear regression model
 $\hat{\mathbf{w}}^\top \mathbf{x} + \hat{b}$,
