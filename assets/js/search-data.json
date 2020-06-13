@@ -62,7 +62,7 @@
   
       ,"page1": {
           "title": "Bilgi",
-          "content": "Bu kitap Derin Öğrenme konusunda bazı temel konuları içermektedir. . Hata ve eklemeler için: unverciftci@gmail.com. .",
+          "content": "Bu kitap Derin Öğrenme konusunda bazı temel konuları içermektedir. Bölümlerin genellikle “Dive into Deep Learning” kitabından alınması planlanmaktadır. Siz de bize yardım edebilirsiniz! . Katkıda bulunanlar: Ünver Çiftçi Tayfun Ünal . Hata ve eklemeler için: unverciftci@gmail.com. .",
           "url": "https://unverciftci.github.io/derin_ogrenme/bilgi/",
           "relUrl": "/bilgi/",
           "date": ""
